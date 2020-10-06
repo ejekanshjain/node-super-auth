@@ -18,20 +18,6 @@ const cors = corsMiddleware({
 server.pre(cors.preflight)
 server.use(cors.actual)
 
-server.pre(restify.plugins.cpuUsageThrottle({
-    limit: 0.8,
-    max: 0.9,
-    interval: 500,
-    halfLife: 500
-}))
-
-server.use(restify.plugins.throttle({
-    burst: 5,
-    rate: 0.5,
-    ip: true,
-    setHeaders: true
-}))
-
 server.use(restify.plugins.jsonBodyParser())
 server.use(restify.plugins.queryParser())
 
