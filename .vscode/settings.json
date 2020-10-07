@@ -1,7 +1,4 @@
 {
     "files.autoSave": "off",
-    "eslint.format.enable": true,
-    "[typescript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-    }
+    "eslint.format.enable": true
 }
