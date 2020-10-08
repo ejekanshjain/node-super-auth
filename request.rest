@@ -1,0 +1,53 @@
+GET http://localhost:5000
+
+### Sign Up
+POST http://localhost:5000/signUp
+Content-Type: application/json
+
+{
+    "email": "ejekanshjain@gmail.com",
+    "password": "P@$$word123",
+    "confirmPassword": "P@$$word123",
+    "firstName": "Ekansh",
+    "lastName": "Jain"
+}
+
+
+### Sign In
+POST http://localhost:5000/signIn
+Content-Type: application/json
+
+{
+    "email": "ejekanshjain@gmail.com",
+    "password": "P@$$word123"
+}
+
+
+### Sign Out
+POST http://localhost:5000/signOut
+Content-Type: application/json
+Authorization: 
+
+{
+    "refreshToken": ""
+}
+
+
+### Get User Profile
+GET http://localhost:5000/profile
+Authorization: 
+
+
+### Update User Profile
+PATCH http://localhost:5000/profile
+Authorization: 
+Content-Type: application/json
+
+{
+    "email": "ejekanshjain@gmail.com",
+    "firstName": "Ekansh",
+    "lastName": "Jain"
+}
+
+
+###

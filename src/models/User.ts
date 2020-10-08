@@ -24,9 +24,8 @@ const userSchema = new mongoose.Schema({
         trim: true
     },
     role: {
-        type: mongoose.Types.ObjectId,
-        required: true,
-        ref: 'Role'
+        type: String,
+        required: true
     },
     active: {
         type: Boolean,

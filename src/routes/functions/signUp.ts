@@ -4,20 +4,24 @@ import bcrypt from 'bcryptjs'
 
 import User from '../../models/User'
 import Role from '../../models/Role'
-import { authSchema } from '../../validators'
+import { signUpSchema } from '../../validators'
 
 export default async (req: Request, res: Response, next: Next) => {
     try {
         let validatedObj
         try {
-            validatedObj = await authSchema.validateAsync(req.body)
+            validatedObj = await signUpSchema.validateAsync(req.body, {
+                abortEarly: true,
+                allowUnknown: true,
+                stripUnknown: true
+            })
         } catch (err) {
             return next(new BadRequestError(err.message))
         }
         validatedObj.password = await bcrypt.hash(validatedObj.password, 10)
-        const role = await Role.findOne({ name: 'User' }, { _id: 1 })
+        const role = await Role.findOne({ name: 'User' }, { name: 1 })
         if (!role) throw new Error('Role Not Found!')
-        validatedObj.role = role._id
+        validatedObj.role = role.name
         try {
             await User.create(validatedObj)
         } catch (err) {
@@ -28,6 +32,6 @@ export default async (req: Request, res: Response, next: Next) => {
         next()
     } catch (err) {
         console.log(err)
-        return next(new InternalServerError(err.message || 'Something Went Wrong!'))
+        next(new InternalServerError(err.message || 'Something Went Wrong!'))
     }
 }

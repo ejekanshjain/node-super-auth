@@ -1,11 +1,20 @@
-const main = async () => {
-    // Role.create({
-    //     name: 'Super Admin'
-    // })
+import './config'
+import './db/MongoDB'
+// import User from './models/User'
+import Role from './models/Role'
+// import RefreshToken from './models/RefreshToken'
 
-    // Role.create({
-    //     name: 'User'
-    // })
+const main = async () => {
+    await Role.insertMany(
+        [
+            {
+                name: 'Super Admin'
+            },
+            {
+                name: 'User'
+            }
+        ]
+    )
 }
 
 main()
