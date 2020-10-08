@@ -7,7 +7,8 @@ import signOut from './functions/signOut'
 import getUserProfile from './functions/getUserProfile'
 import updateUserProfile from './functions/updateUserProfile'
 import refreshToken from './functions/refreshToken'
-import activeSessions from './functions/activeSessions'
+import getActiveSessions from './functions/getActiveSessions'
+import removeActiveSession from './functions/removeActiveSession'
 import changePassword from './functions/changePassword'
 
 export default (server:Server) => {
@@ -18,6 +19,7 @@ export default (server:Server) => {
     server.get('/profile', getUserProfile)
     server.patch('/profile', updateUserProfile)
     server.post('/refreshToken', refreshToken)
-    server.get('/activeSessions', activeSessions)
+    server.get('/activeSessions', getActiveSessions)
+    server.del('/activeSessions/:id', removeActiveSession)
     server.post('/changePassword', changePassword)
 }

@@ -1,5 +1,5 @@
 import { Request, Response, Next } from 'restify'
-import { InternalServerError, BadRequestError } from 'restify-errors'
+import { InternalServerError, BadRequestError, ForbiddenError } from 'restify-errors'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
@@ -20,9 +20,9 @@ export default async (req: Request, res: Response, next: Next) => {
         } catch (err) {
             return next(new BadRequestError(err.message))
         }
-        const user = await User.findOne({ email: validatedObj.email })
+        const user = await User.findOne({ email: validatedObj.email }, { password: 1, role: 1, active: 1 })
         if (!user) return next(new BadRequestError('Invalid email or password!'))
-        if (!user.active) return next(new BadRequestError('Your account has been suspended!'))
+        if (!user.active) return next(new ForbiddenError('Your account has been suspended!'))
         if (!(await bcrypt.compare(validatedObj.password, user.password.toString()))) return next(new BadRequestError('Invalid email or password!'))
         const userAgent = req.userAgent()
         const refreshToken = jwt.sign({

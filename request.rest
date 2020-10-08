@@ -64,6 +64,11 @@ GET http://localhost:5000/activeSessions
 Authorization: 
 
 
+### Remove Session
+DELETE http://localhost:5000/activeSessions/id
+Authorization: 
+
+
 ### Change Password
 POST http://localhost:5000/changePassword
 Authorization: 

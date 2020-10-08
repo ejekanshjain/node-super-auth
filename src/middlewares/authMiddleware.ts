@@ -23,10 +23,10 @@ const authMiddleware: any = (options: Options) => {
             return next(new InvalidCredentialsError('Authorization token is required!'))
         }
         try {
-            const decodedData: any = jwt.verify(token, options.secret)
+            const decodedUser: any = jwt.verify(token, options.secret)
             req.user = {
-                _id: decodedData._id,
-                role: decodedData.role
+                _id: decodedUser._id,
+                role: decodedUser.role
             }
         } catch (err) {
             return next(new UnauthorizedError('Invalid Authorization token!'))

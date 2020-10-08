@@ -5,7 +5,7 @@ import RefreshToken from '../../models/RefreshToken'
 
 export default async (req: Request, res: Response, next: Next) => {
     try {
-        const activeSessions = await RefreshToken.find({ userId: req.user?._id }, { _id: 0, userAgent: 1, createdAt: 1 })
+        const activeSessions = await RefreshToken.find({ userId: req.user?._id }, { userAgent: 1, createdAt: 1 })
         res.send(activeSessions)
         next()
     } catch (err) {
