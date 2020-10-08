@@ -44,7 +44,7 @@ server.use(restify.plugins.multipartBodyParser({
     uploadDir: 'uploads'
 }))
 
-server.use(authMiddleware({ secret: JWT_SECRET }).unless({ path: ['/', '/signUp', '/signIn'] }))
+server.use(authMiddleware({ secret: JWT_SECRET }).unless({ path: ['/', '/signUp', '/signIn', '/refreshToken'] }))
 
 routes(server)
 

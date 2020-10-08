@@ -18,6 +18,6 @@ export default (server:Server) => {
     server.get('/profile', getUserProfile)
     server.patch('/profile', updateUserProfile)
     server.post('/refreshToken', refreshToken)
-    server.post('/activeSessions', activeSessions)
+    server.get('/activeSessions', activeSessions)
     server.post('/changePassword', changePassword)
 }

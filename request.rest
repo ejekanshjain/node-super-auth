@@ -50,4 +50,30 @@ Content-Type: application/json
 }
 
 
+### Refresh Token
+POST http://localhost:5000/refreshToken
+Content-Type: application/json
+
+{
+    "refreshToken": ""
+}
+
+
+### Get Active Sessions
+GET http://localhost:5000/activeSessions
+Authorization: 
+
+
+### Change Password
+POST http://localhost:5000/changePassword
+Authorization: 
+Content-Type: application/json
+
+{
+    "currentPassword": "P@$$word123",
+    "newPassword": "P@$$word123",
+    "confirmPassword": "P@$$word123"
+}
+
+
 ###

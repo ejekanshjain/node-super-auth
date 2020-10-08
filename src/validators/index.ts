@@ -19,4 +19,10 @@ const updateProfileSchema = Joi.object({
     lastName: Joi.string().min(1).required()
 })
 
-export { signUpSchema, signInSchema, updateProfileSchema }
+const changePasswordSchema = Joi.object({
+    currentPassword: Joi.string().min(8).required(),
+    newPassword: Joi.string().min(8).message('Password length must be atleast 8').pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')).message('Password must contain atleast one upper case letter, one lower case letter, one number and one special character').required(),
+    confirmPassword: Joi.string().min(8).valid(Joi.ref('newPassword')).required()
+})
+
+export { signUpSchema, signInSchema, updateProfileSchema, changePasswordSchema }
